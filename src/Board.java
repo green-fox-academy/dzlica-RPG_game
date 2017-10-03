@@ -30,20 +30,7 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
-    //create the floor
-
-    for (int i = 0; i < width / floor; i++) {
-      for (int j = 0; j < width / floor; j++) {
-        PositionedImage image = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", i*72, j*72);
-        image.draw(graphics);
-        posX += floor;
-      }
-      posX = 0;
-      posY += floor;
-
-    }
-    //graphics.fillRect(testBoxX, testBoxY, 72, 72);
-
+    
     //create the wall
     //reset pisitions to zero
 
@@ -56,7 +43,7 @@ public class Board extends JComponent implements KeyListener {
             { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, //6
             { 0, 0, 0, 0, 0, 1, 1, 0, 1, 0 }, //7
             { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 }, //8
-            { 0, 0, 0, 1, 0, 1, 1, 0, 1, 0 },  //9
+            { 0, 0, 0, 1, 0, 1, 1, 0, 1, 0 }, //9
             { 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 }  //10
     };
 
@@ -65,11 +52,17 @@ public class Board extends JComponent implements KeyListener {
         if (theWall[i][j] == 1) {
           PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", j * floor, i * floor);
           wall.draw(graphics);
+        }
+        else if (theWall[i][j] == 0) {
+          PositionedImage background = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", j * floor, i * floor);
+          background.draw(graphics);
       }
-
       }
     }
 
+    PositionedImage hero = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", 0, 0);
+    hero.draw(graphics);
+    //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
 
   }
