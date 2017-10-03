@@ -11,6 +11,9 @@ public class Board extends JComponent implements KeyListener {
   int posX;
   int posY;
   int floor;
+  String currentImage;
+
+
 
   public Board() {
     testBoxX = 0;
@@ -19,6 +22,7 @@ public class Board extends JComponent implements KeyListener {
     posX = 0;
     posY = 0;
     floor = 72;
+    currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
 
 
     // set the size of your draw board
@@ -56,17 +60,22 @@ public class Board extends JComponent implements KeyListener {
         else if (theWall[i][j] == 0) {
           PositionedImage background = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", j * floor, i * floor);
           background.draw(graphics);
-      }
+        }
       }
     }
 
-    PositionedImage hero = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", testBoxX, testBoxY);
+
+    PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
     hero.draw(graphics);
+
+//      MoveHero hero = new MoveHero("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", testBoxX, testBoxY);
+//      hero.draw(graphics);
+
+
     //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
 
   }
-
   public static void main(String[] args) {
     // Here is how you set up a new window and adding our board to it
     JFrame frame = new JFrame("RPG Game");
@@ -99,12 +108,16 @@ public class Board extends JComponent implements KeyListener {
   public void keyReleased(KeyEvent e) {
     // When the up or down keys hit, we change the position of our box
     if (e.getKeyCode() == KeyEvent.VK_UP) {
+      currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png";
       testBoxY -= 72;
     } else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+      currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
       testBoxY += 72;
     } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+      currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png";
       testBoxX -= 72;
     } else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+      currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png";
       testBoxX += 72;
     }
     // and redraw to have a new picture with the new coordinates
