@@ -12,18 +12,29 @@ public class Board extends JComponent implements KeyListener {
   int posY;
   int floor;
   String currentImage;
-
+  int[][] theWall;
 
 
   public Board() {
-    testBoxX = 0;
-    testBoxY = 0;
-    width = 720;
-    posX = 0;
-    posY = 0;
-    floor = 72;
-    currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
-
+    this.testBoxX = 0;
+    this.testBoxY = 0;
+    this.width = 720;
+    this.posX = 0;
+    this.posY = 0;
+    this.floor = 72;
+    this.currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
+    this.theWall = new int[][]{
+            { 0, 0, 0, 1, 0, 1, 0, 1, 1, 0 }, //1
+            { 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 }, //2
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 }, //3
+            { 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }, //4
+            { 0, 1, 0, 1, 0, 0, 0, 0, 1, 0 }, //5
+            { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, //6
+            { 0, 0, 0, 0, 0, 1, 1, 0, 1, 0 }, //7
+            { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 }, //8
+            { 0, 0, 0, 1, 0, 1, 1, 0, 1, 0 }, //9
+            { 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 }  //10
+    };
 
     // set the size of your draw board
     setPreferredSize(new Dimension(720, 720));
@@ -38,44 +49,34 @@ public class Board extends JComponent implements KeyListener {
     //create the wall
     //reset pisitions to zero
 
-    int[][] theWall = new int[][]{
-            { 0, 0, 0, 1, 0, 1, 0, 1, 1, 0 }, //1
-            { 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 }, //2
-            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 }, //3
-            { 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }, //4
-            { 0, 1, 0, 1, 0, 0, 0, 0, 1, 0 }, //5
-            { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, //6
-            { 0, 0, 0, 0, 0, 1, 1, 0, 1, 0 }, //7
-            { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 }, //8
-            { 0, 0, 0, 1, 0, 1, 1, 0, 1, 0 }, //9
-            { 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 }  //10
-    };
 
     for (int i = 0; i < theWall.length; i++) {
       for (int j = 0; j < theWall.length; j++) {
         if (theWall[i][j] == 1) {
-          PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", j * floor, i * floor);
+          PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", j * this.floor, i * this.floor);
           wall.draw(graphics);
         }
         else if (theWall[i][j] == 0) {
-          PositionedImage background = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", j * floor, i * floor);
+          PositionedImage background = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", j * this.floor, i * this.floor);
           background.draw(graphics);
         }
       }
     }
 
 
-    PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
+//    PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
+//    hero.draw(graphics);
+
+    MoveHero hero = new MoveHero(this.currentImage, this.testBoxX, this.testBoxY);
     hero.draw(graphics);
 
-//      MoveHero hero = new MoveHero("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", testBoxX, testBoxY);
-//      hero.draw(graphics);
 
 
     //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
-
   }
+
+
   public static void main(String[] args) {
     // Here is how you set up a new window and adding our board to it
     JFrame frame = new JFrame("RPG Game");
