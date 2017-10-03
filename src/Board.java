@@ -13,8 +13,8 @@ public class Board extends JComponent implements KeyListener {
   int floor;
 
   public Board() {
-    testBoxX = 300;
-    testBoxY = 300;
+    testBoxX = 0;
+    testBoxY = 0;
     width = 720;
     posX = 0;
     posY = 0;
@@ -30,7 +30,7 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
-    
+
     //create the wall
     //reset pisitions to zero
 
@@ -60,7 +60,7 @@ public class Board extends JComponent implements KeyListener {
       }
     }
 
-    PositionedImage hero = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", 0, 0);
+    PositionedImage hero = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png", testBoxX, testBoxY);
     hero.draw(graphics);
     //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
@@ -99,9 +99,13 @@ public class Board extends JComponent implements KeyListener {
   public void keyReleased(KeyEvent e) {
     // When the up or down keys hit, we change the position of our box
     if (e.getKeyCode() == KeyEvent.VK_UP) {
-      testBoxY -= 100;
+      testBoxY -= 72;
     } else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-      testBoxY += 100;
+      testBoxY += 72;
+    } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+      testBoxX -= 72;
+    } else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+      testBoxX += 72;
     }
     // and redraw to have a new picture with the new coordinates
     repaint();
