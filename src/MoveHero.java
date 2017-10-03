@@ -8,7 +8,6 @@ public class MoveHero extends PositionedImage {
     }
 
     public void moving(Graphics graphics) {
-
     }
 
 
