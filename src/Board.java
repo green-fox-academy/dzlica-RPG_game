@@ -77,6 +77,9 @@ public class Board extends JComponent implements KeyListener {
         else if (toBeY < 0 || toBeY > 9) {
             return false;
         }
+        else if (theWall[toBeY][toBeX] == 1) {
+            return false;
+        }
         else return true;
     }
 
