@@ -30,8 +30,7 @@ public class Board extends JComponent implements KeyListener {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
-    // here you have a 720x720 canvas
-    // you can create and draw an image using the class below e.g.
+    //create the floor
 
     for (int i = 0; i < width / floor; i++) {
       for (int j = 0; j < width / floor; j++) {
@@ -45,8 +44,33 @@ public class Board extends JComponent implements KeyListener {
     }
     //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
-    PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", 3*floor, 2*floor);
-    wall.draw(graphics);
+    //create the wall
+    //reset pisitions to zero
+
+    int[][] theWall = new int[][]{
+            { 0, 0, 0, 1, 0, 1, 0, 1, 1, 0 }, //1
+            { 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 }, //2
+            { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 }, //3
+            { 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 }, //4
+            { 0, 1, 0, 1, 0, 0, 0, 0, 1, 0 }, //5
+            { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, //6
+            { 0, 0, 0, 0, 0, 1, 1, 0, 1, 0 }, //7
+            { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 }, //8
+            { 0, 0, 0, 1, 0, 1, 1, 0, 1, 0 },  //9
+            { 0, 1, 0, 1, 0, 1, 0, 0, 0, 0 }  //10
+    };
+
+    for (int i = 0; i < theWall.length; i++) {
+      for (int j = 0; j < theWall.length; j++) {
+        if (theWall[i][j] == 1) {
+          PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", j * floor, i * floor);
+          wall.draw(graphics);
+      }
+
+      }
+    }
+
+
 
   }
 
