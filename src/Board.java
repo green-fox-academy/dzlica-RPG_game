@@ -7,10 +7,19 @@ public class Board extends JComponent implements KeyListener {
 
   int testBoxX;
   int testBoxY;
+  int width;
+  int posX;
+  int posY;
+  int floor;
 
   public Board() {
     testBoxX = 300;
     testBoxY = 300;
+    width = 720;
+    posX = 0;
+    posY = 0;
+    floor = 72;
+
 
     // set the size of your draw board
     setPreferredSize(new Dimension(720, 720));
@@ -20,11 +29,25 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-    graphics.fillRect(testBoxX, testBoxY, 100, 100);
+
     // here you have a 720x720 canvas
     // you can create and draw an image using the class below e.g.
-    PositionedImage image = new PositionedImage("yourimage.png", 300, 300);
-    image.draw(graphics);
+
+    for (int i = 0; i < width / floor; i++) {
+      for (int j = 0; j < width / floor; j++) {
+        PositionedImage image = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/floor.png", i*72, j*72);
+        image.draw(graphics);
+        posX += floor;
+      }
+      posX = 0;
+      posY += floor;
+
+    }
+    //graphics.fillRect(testBoxX, testBoxY, 72, 72);
+
+    PositionedImage wall = new PositionedImage("/Users/lica/GreenFox/dzlica-RPG_game/image/wall.png", 3*floor, 2*floor);
+    wall.draw(graphics);
+
   }
 
   public static void main(String[] args) {
