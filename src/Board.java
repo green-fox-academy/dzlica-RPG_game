@@ -21,8 +21,8 @@ public class Board extends JComponent implements KeyListener {
         this.testBoxX = 0;
         this.testBoxY = 0;
         this.width = 720;
-        this.posX = 0;
-        this.posY = 0;
+//        this.posX = 0;
+//        this.posY = 0;
 
 
         // set the size of your draw board
@@ -39,6 +39,7 @@ public class Board extends JComponent implements KeyListener {
         this.tempSkeleton2.draw(graphics);
         this.tempSkeleton3.draw(graphics);
         this.tempBoss.draw(graphics);
+
         graphics.drawString("Hero (Level 1) HP: " + tempHero.currentHp + "/" + tempHero.maxHp + " | DP: " + tempHero.Dp + " | SP: " + tempHero.Dp, 740, 50);
         graphics.drawString("Boss (Level 1) HP: " + tempBoss.currentHp + "/" + tempBoss.maxHp + " | DP: " + tempBoss.Dp + " | SP: " + tempBoss.Dp, 740, 80);
         graphics.drawString("Skeleton One (Level 1) HP: " + tempSkeleton1.currentHp + "/" + tempSkeleton1.maxHp + " | DP: " + tempSkeleton1.Dp + " | SP: " + tempSkeleton1.Dp, 740, 110);
@@ -78,13 +79,13 @@ public class Board extends JComponent implements KeyListener {
         Hero hero = new Hero(0, 0);
         board.tempHero = hero;
 
-        Skeleton monsterOne = new Skeleton(6, 0);
+        Skeleton monsterOne = new Skeleton(board.posX, board.posY, board.tempTable);
         board.tempSkeleton1 = monsterOne;
 
-        Skeleton monsterTwo = new Skeleton(4, 3);
+        Skeleton monsterTwo = new Skeleton(board.posX, board.posY, board.tempTable);
         board.tempSkeleton2 = monsterTwo;
 
-        Skeleton monsterThree = new Skeleton(5, 7);
+        Skeleton monsterThree = new Skeleton(board.posX, board.posY, board.tempTable);
         board.tempSkeleton3 = monsterThree;
 
         Boss boss = new Boss(7, 6);
