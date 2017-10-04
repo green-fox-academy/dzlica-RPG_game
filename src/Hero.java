@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Hero extends PositionedImage {
+public class Hero extends Character {
     String currentImage;
     int testBoxX;
     int testBoxY;
@@ -18,6 +18,10 @@ public class Hero extends PositionedImage {
         //this.currentImage = "image/hero-down.png";
         this.testBoxX = 0;
         this.testBoxY = 0;
+        this.currentHp = currentHp;
+        this.maxHp = maxHp;
+        this.Dp = Dp;
+        this.Sp = Sp;
     }
 
     public void moving(KeyEvent e, GameTable tempTable) {

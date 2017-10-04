@@ -24,6 +24,7 @@ public class Board extends JComponent implements KeyListener {
         this.posX = 0;
         this.posY = 0;
 
+
         // set the size of your draw board
         setPreferredSize(new Dimension(720, 720));
         setVisible(true);
