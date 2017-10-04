@@ -1,13 +1,12 @@
 import java.awt.*;
 
-public class Skeleton extends PositionedImage {
+public class Boss extends PositionedImage {
 
     String currentImage;
 
-    public Skeleton(int posX, int posY) {
-        super("image/skeleton.png", posX, posY);
-        this.currentImage = "image/skeleton.png";
-
+    public Boss(int posX, int posY) {
+        super("image/boss.png", posX, posY);
+        this.currentImage = "image/boss.png";
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Board extends JComponent implements KeyListener {
     Skeleton tempSkeleton1;
     Skeleton tempSkeleton2;
     Skeleton tempSkeleton3;
+    Boss tempBoss;
 
     public Board() {
         this.testBoxX = 0;
@@ -36,6 +37,7 @@ public class Board extends JComponent implements KeyListener {
         this.tempSkeleton1.draw(graphics);
         this.tempSkeleton2.draw(graphics);
         this.tempSkeleton3.draw(graphics);
+        this.tempBoss.draw(graphics);
 
     }
 
@@ -73,13 +75,14 @@ public class Board extends JComponent implements KeyListener {
         Skeleton monsterOne = new Skeleton(6, 0);
         board.tempSkeleton1 = monsterOne;
 
-        Skeleton monsterTwo = new Skeleton(3, 5);
+        Skeleton monsterTwo = new Skeleton(4, 3);
         board.tempSkeleton2 = monsterTwo;
 
-        Skeleton monsterThree = new Skeleton(5, 8);
+        Skeleton monsterThree = new Skeleton(5, 7);
         board.tempSkeleton3 = monsterThree;
 
-
+        Boss boss = new Boss(7, 6);
+        board.tempBoss = boss;
 
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
