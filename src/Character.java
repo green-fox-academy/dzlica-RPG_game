@@ -5,13 +5,11 @@ public class Character extends PositionedImage {
     int maxHp;
     int Dp;
     int Sp;
+    int d6;
 
     public Character(String filename, int posX, int posY) {
         super(filename, posX, posY);
-        this.currentHp = currentHp;
-        this.maxHp = maxHp;
-        this.Dp = Dp;
-        this.Sp = Sp;
+        d6 = (int) (1 + Math.random() * 6);
     }
 
     @Override
@@ -19,5 +17,6 @@ public class Character extends PositionedImage {
         this.posX = posX;
         this.posY = posY;
         super.draw(graphics);
+
     }
 }

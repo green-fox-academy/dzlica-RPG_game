@@ -15,14 +15,15 @@ public class Hero extends Character {
 
     public Hero(int posX, int posY) {
         super("image/hero-down.png", posX, posY);
-        //this.currentImage = "image/hero-down.png";
         this.testBoxX = 0;
         this.testBoxY = 0;
-        this.currentHp = currentHp;
-        this.maxHp = maxHp;
-        this.Dp = Dp;
-        this.Sp = Sp;
+        this.maxHp = 20 + 3 * d6;
+        this.currentHp = this.maxHp;
+        this.Dp = 2 * d6;
+        this.Sp = 5 + d6;
     }
+
+
 
     public void moving(KeyEvent e, GameTable tempTable) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {

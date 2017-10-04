@@ -39,6 +39,11 @@ public class Board extends JComponent implements KeyListener {
         this.tempSkeleton2.draw(graphics);
         this.tempSkeleton3.draw(graphics);
         this.tempBoss.draw(graphics);
+        graphics.drawString("Hero (Level 1) HP: " + tempHero.currentHp + "/" + tempHero.maxHp + " | DP: " + tempHero.Dp + " | SP: " + tempHero.Dp, 740, 50);
+        graphics.drawString("Boss (Level 1) HP: " + tempBoss.currentHp + "/" + tempBoss.maxHp + " | DP: " + tempBoss.Dp + " | SP: " + tempBoss.Dp, 740, 80);
+        graphics.drawString("Skeleton One (Level 1) HP: " + tempSkeleton1.currentHp + "/" + tempSkeleton1.maxHp + " | DP: " + tempSkeleton1.Dp + " | SP: " + tempSkeleton1.Dp, 740, 110);
+        graphics.drawString("Skeleton Two (Level 1) HP: " + tempSkeleton2.currentHp + "/" + tempSkeleton2.maxHp + " | DP: " + tempSkeleton2.Dp + " | SP: " + tempSkeleton2.Dp, 740, 140);
+        graphics.drawString("Skeleton Three (Level 1) HP: " + tempSkeleton3.currentHp + "/" + tempSkeleton3.maxHp + " | DP: " + tempSkeleton3.Dp + " | SP: " + tempSkeleton3.Dp, 740, 170);
 
     }
 
@@ -84,6 +89,11 @@ public class Board extends JComponent implements KeyListener {
 
         Boss boss = new Boss(7, 6);
         board.tempBoss = boss;
+
+
+
+
+
 
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
