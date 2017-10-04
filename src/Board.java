@@ -23,18 +23,7 @@ public class Board extends JComponent implements KeyListener {
         this.posY = 0;
         this.floor = 72;
         this.currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
-        this.theWall = new int[][]{
-                {0, 0, 0, 1, 0, 1, 0, 1, 1, 0}, //1
-                {0, 1, 1, 1, 0, 1, 0, 1, 1, 0}, //2
-                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0}, //3
-                {1, 1, 1, 1, 0, 1, 1, 1, 1, 0}, //4
-                {0, 1, 0, 1, 0, 0, 0, 0, 1, 0}, //5
-                {0, 1, 0, 1, 0, 1, 1, 0, 1, 0}, //6
-                {0, 0, 0, 0, 0, 1, 1, 0, 1, 0}, //7
-                {0, 1, 1, 1, 0, 0, 0, 0, 1, 0}, //8
-                {0, 0, 0, 1, 0, 1, 1, 0, 1, 0}, //9
-                {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}  //10
-        };
+
 
         // set the size of your draw board
         setPreferredSize(new Dimension(720, 720));
@@ -48,22 +37,40 @@ public class Board extends JComponent implements KeyListener {
 
         //create the wall
         //reset pisitions to zero
+        int[][] tableX = {
+                {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
+                {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
+                {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 1, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
+                {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
+        };
+
+        GameTable theWall = new GameTable (tableX, 720);
+        theWall.makeTable(graphics);
 
 
-        for (int i = 0; i < theWall.length; i++) {
-            for (int j = 0; j < theWall.length; j++) {
-                if (theWall[i][j] == 1) {
-                    PositionedImage wall = new PositionedImage("image/wall.png", j, i);
-                    wall.draw(graphics);
-                } else if (theWall[i][j] == 0) {
-                    PositionedImage background = new PositionedImage("image/floor.png", j, i);
-                    background.draw(graphics);
-                }
-            }
-        }
+//        for (int i = 0; i < theWall.length; i++) {
+//            for (int j = 0; j < theWall.length; j++) {
+//                if (theWall[i][j] == 1) {
+//                    PositionedImage wall = new PositionedImage("image/wall.png", j, i);
+//                    wall.draw(graphics);
+//                } else if (theWall[i][j] == 0) {
+//                    PositionedImage background = new PositionedImage("image/floor.png", j, i);
+//                    background.draw(graphics);
+//                }
+//            }
+//        }
 
 
-        PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
+//        PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
+//        hero.draw(graphics);
+
+        Hero hero = new Hero(currentImage, testBoxX, testBoxY);
         hero.draw(graphics);
 
 
