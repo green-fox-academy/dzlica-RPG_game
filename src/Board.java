@@ -11,12 +11,7 @@ public class Board extends JComponent implements KeyListener {
     int posX;
     int posY;
     GameTable tempTable;
-    String currentImage;
     Hero tempHero;
-
-
-
-
 
     public Board() {
         this.testBoxX = 0;
@@ -24,7 +19,6 @@ public class Board extends JComponent implements KeyListener {
         this.width = 720;
         this.posX = 0;
         this.posY = 0;
-
 
         // set the size of your draw board
         setPreferredSize(new Dimension(720, 720));
@@ -34,10 +28,23 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
+        this.tempTable.makeTable(graphics);
+        this.tempHero.draw(graphics);
 
+    }
 
-        //create the wall
-        //reset pisitions to zero
+    public static void main(String[] args) {
+        // Here is how you set up a new window and adding our board to it
+        JFrame frame = new JFrame("RPG Game");
+        Board board = new Board();
+
+        frame.add(board);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.pack();
+        // Here is how you can add a key event listener
+        // The board object will be notified when hitting any key
+        // with the system calling one of the below 3 methods
         int[][] tableX = {
                 {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
                 {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
@@ -52,32 +59,10 @@ public class Board extends JComponent implements KeyListener {
         };
 
         GameTable theWall = new GameTable (tableX, 720);
-        theWall.makeTable(graphics);
-        this.tempTable = theWall;
+        board.tempTable = theWall;
 
-
-        Hero hero = new Hero(this.testBoxX, this.testBoxY);
-        hero.draw(graphics);
-        hero.drawHero(graphics);
-        this.tempHero = hero;
-
-
-        //graphics.fillRect(testBoxX, testBoxY, 72, 72);
-
-    }
-
-    public static void main(String[] args) {
-        // Here is how you set up a new window and adding our board to it
-        JFrame frame = new JFrame("RPG Game");
-        Board board = new Board();
-        frame.add(board);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.pack();
-        // Here is how you can add a key event listener
-        // The board object will be notified when hitting any key
-        // with the system calling one of the below 3 methods
-        
+        Hero hero = new Hero(0, 0);
+        board.tempHero = hero;
 
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
