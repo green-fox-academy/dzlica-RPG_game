@@ -9,7 +9,6 @@ public class Character extends PositionedImage {
 
     public Character(String filename, int posX, int posY) {
         super(filename, posX, posY);
-        d6 = (int) (1 + Math.random() * 6);
     }
 
     @Override
@@ -18,5 +17,9 @@ public class Character extends PositionedImage {
         this.posY = posY;
         super.draw(graphics);
 
+    }
+
+    public static int d6() {
+        return (int) (1 + Math.random() * 6);
     }
 }

@@ -17,32 +17,32 @@ public class Hero extends Character {
         super("image/hero-down.png", posX, posY);
         this.testBoxX = 0;
         this.testBoxY = 0;
-        this.maxHp = 20 + 3 * d6;
+        this.maxHp = 20 + 3 * d6();
         this.currentHp = this.maxHp;
-        this.Dp = 2 * d6;
-        this.Sp = 5 + d6;
+        this.Dp = 2 * d6();
+        this.Sp = 5 + d6();
     }
 
 
     public void moving(KeyEvent e, GameTable tempTable) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png";
+            this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png");
             if (stayIn(testBoxX, testBoxY - 1, tempTable)) {
                 testBoxY -= 1;
             }
 
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
+                this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png");
                 if (stayIn(testBoxX, testBoxY + 1, tempTable)) {
                     testBoxY += 1;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png";
+                this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png");
                 if (stayIn(testBoxX -1, testBoxY, tempTable)) {
                     testBoxX -= 1;
                 }
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png";
+                this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png");
                 if (stayIn(testBoxX + 1, testBoxY, tempTable)) {
                     testBoxX += 1;
                 }
