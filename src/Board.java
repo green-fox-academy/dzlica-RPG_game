@@ -10,9 +10,12 @@ public class Board extends JComponent implements KeyListener {
     int width;
     int posX;
     int posY;
-    int floor;
-    String currentImage;
     GameTable tempTable;
+    String currentImage;
+    Hero tempHero;
+
+
+
 
 
     public Board() {
@@ -21,8 +24,6 @@ public class Board extends JComponent implements KeyListener {
         this.width = 720;
         this.posX = 0;
         this.posY = 0;
-        this.floor = 72;
-        this.currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
 
 
         // set the size of your draw board
@@ -55,29 +56,15 @@ public class Board extends JComponent implements KeyListener {
         this.tempTable = theWall;
 
 
-//        PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
-//        hero.draw(graphics);
-
-        Hero hero = new Hero(currentImage, testBoxX, testBoxY);
+        Hero hero = new Hero(this.testBoxX, this.testBoxY);
         hero.draw(graphics);
+        hero.drawHero(graphics);
+        this.tempHero = hero;
+
 
         //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
     }
-    public boolean stayIn(int toBeX, int toBeY, GameTable tempTable) {
-
-        if (toBeX < 0 ||  toBeX > 9) {
-            return false;
-        }
-        else if (toBeY < 0 || toBeY > 9) {
-            return false;
-        }
-        else if (tempTable.table[toBeY][toBeX] == 1) {
-            return false;
-        }
-        else return true;
-    }
-
 
     public static void main(String[] args) {
         // Here is how you set up a new window and adding our board to it
@@ -90,9 +77,13 @@ public class Board extends JComponent implements KeyListener {
         // Here is how you can add a key event listener
         // The board object will be notified when hitting any key
         // with the system calling one of the below 3 methods
+        
+
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
+
+
     }
 
     // To be a KeyListener the class needs to have these 3 methods in it
@@ -109,28 +100,8 @@ public class Board extends JComponent implements KeyListener {
     // But actually we can use just this one for our goals here
     @Override
     public void keyReleased(KeyEvent e) {
+        tempHero.moving(e, tempTable);
         // When the up or down keys hit, we change the position of our box
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png";
-            if (stayIn(testBoxX, testBoxY - 1, this.tempTable)) {
-                testBoxY -= 1;
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
-            if (stayIn(testBoxX, testBoxY + 1, this.tempTable)) {
-                testBoxY += 1;
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png";
-            if (stayIn(testBoxX -1, testBoxY, this.tempTable)) {
-                testBoxX -= 1;
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png";
-            if (stayIn(testBoxX + 1, testBoxY, this.tempTable)) {
-                testBoxX += 1;
-            }
-        }
         // and redraw to have a new picture with the new coordinates
         repaint();
     }
