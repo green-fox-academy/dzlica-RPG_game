@@ -24,7 +24,6 @@ public class Hero extends Character {
     }
 
 
-
     public void moving(KeyEvent e, GameTable tempTable) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png";

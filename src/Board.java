@@ -79,20 +79,17 @@ public class Board extends JComponent implements KeyListener {
         Hero hero = new Hero(0, 0);
         board.tempHero = hero;
 
-        Skeleton monsterOne = new Skeleton(board.posX, board.posY, board.tempTable);
+        Skeleton monsterOne = new Skeleton(4, 1);
         board.tempSkeleton1 = monsterOne;
 
-        Skeleton monsterTwo = new Skeleton(board.posX, board.posY, board.tempTable);
+        Skeleton monsterTwo = new Skeleton(2, 5);
         board.tempSkeleton2 = monsterTwo;
 
-        Skeleton monsterThree = new Skeleton(board.posX, board.posY, board.tempTable);
+        Skeleton monsterThree = new Skeleton(0, 8);
         board.tempSkeleton3 = monsterThree;
 
         Boss boss = new Boss(7, 6);
         board.tempBoss = boss;
-
-
-
 
 
 
