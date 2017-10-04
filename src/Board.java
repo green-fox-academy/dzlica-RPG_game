@@ -12,7 +12,7 @@ public class Board extends JComponent implements KeyListener {
     int posY;
     int floor;
     String currentImage;
-    int[][] theWall;
+    GameTable tempTable;
 
 
     public Board() {
@@ -52,19 +52,7 @@ public class Board extends JComponent implements KeyListener {
 
         GameTable theWall = new GameTable (tableX, 720);
         theWall.makeTable(graphics);
-
-
-//        for (int i = 0; i < theWall.length; i++) {
-//            for (int j = 0; j < theWall.length; j++) {
-//                if (theWall[i][j] == 1) {
-//                    PositionedImage wall = new PositionedImage("image/wall.png", j, i);
-//                    wall.draw(graphics);
-//                } else if (theWall[i][j] == 0) {
-//                    PositionedImage background = new PositionedImage("image/floor.png", j, i);
-//                    background.draw(graphics);
-//                }
-//            }
-//        }
+        this.tempTable = theWall;
 
 
 //        PositionedImage hero = new PositionedImage(currentImage, testBoxX, testBoxY);
@@ -73,18 +61,18 @@ public class Board extends JComponent implements KeyListener {
         Hero hero = new Hero(currentImage, testBoxX, testBoxY);
         hero.draw(graphics);
 
-
         //graphics.fillRect(testBoxX, testBoxY, 72, 72);
 
     }
-    public boolean stayIn(int toBeX, int toBeY) {
+    public boolean stayIn(int toBeX, int toBeY, GameTable tempTable) {
+
         if (toBeX < 0 ||  toBeX > 9) {
             return false;
         }
         else if (toBeY < 0 || toBeY > 9) {
             return false;
         }
-        else if (theWall[toBeY][toBeX] == 1) {
+        else if (tempTable.table[toBeY][toBeX] == 1) {
             return false;
         }
         else return true;
@@ -124,22 +112,22 @@ public class Board extends JComponent implements KeyListener {
         // When the up or down keys hit, we change the position of our box
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png";
-            if (stayIn(testBoxX, testBoxY - 1)) {
+            if (stayIn(testBoxX, testBoxY - 1, this.tempTable)) {
                 testBoxY -= 1;
             }
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png";
-            if (stayIn(testBoxX, testBoxY + 1)) {
+            if (stayIn(testBoxX, testBoxY + 1, this.tempTable)) {
                 testBoxY += 1;
             }
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png";
-            if (stayIn(testBoxX -1, testBoxY)) {
+            if (stayIn(testBoxX -1, testBoxY, this.tempTable)) {
                 testBoxX -= 1;
             }
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             currentImage = "/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png";
-            if (stayIn(testBoxX + 1, testBoxY)) {
+            if (stayIn(testBoxX + 1, testBoxY, this.tempTable)) {
                 testBoxX += 1;
             }
         }
