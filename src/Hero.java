@@ -60,7 +60,7 @@ public class Hero extends Character {
             return false;
         } else if (toBeY < 0 || toBeY > 9) {
             return false;
-        } else if (tempTable.table[toBeY][toBeX] >= 1) {
+        } else if (tempTable.table[toBeY][toBeX] == 1) {
             return false;
         }
         else return true;
@@ -68,35 +68,46 @@ public class Hero extends Character {
 
     public boolean battle(int toBeX, int toBeY, GameTable tempTable) {
         Skeleton battleSkeleton = new Skeleton(toBeX, toBeY);
-        if (tempTable.table[toBeX][toBeY] > 1) {
-            if (tempTable.table[toBeX][toBeY] == 2) {
+        if (tempTable.table[toBeY][toBeX] > 1) {
+            if (tempTable.table[toBeY][toBeX] == 2) {
                 battleSkeleton = tempTable.tempSkeleton1;
             }
-            else if (tempTable.table[toBeX][toBeY] == 3) {
+            else if (tempTable.table[toBeY][toBeX] == 3) {
                 battleSkeleton = tempTable.tempSkeleton2;
             }
-            else if (tempTable.table[toBeX][toBeY] == 5) {
+            else if (tempTable.table[toBeY][toBeX] == 4) {
                 battleSkeleton = tempTable.tempSkeleton3;
             }
-            while (this.currentHp > 0 || battleSkeleton.currentHp > 0) {
-                this.strike(battleSkeleton);
+            while (this.currentHp > 0 && battleSkeleton.currentHp > 0) {
+                if (this.Sv > battleSkeleton.Dp) {
+                    battleSkeleton.currentHp = battleSkeleton.currentHp - ((this.Sv) - battleSkeleton.Dp);
+                }
+                else if ((battleSkeleton.Sv) > this.Dp) {
+                    this.currentHp = this.currentHp - ((battleSkeleton.Sv) - this.Dp);
+                }
             }
             if (isAlive == false)  {
-                tempTable.table[battleSkeleton.posY][battleSkeleton.posX] = 0;
-                battleSkeleton.posX = - 50;
-                battleSkeleton.posY = - 50;
+                if (battleSkeleton.currentHp < 0) {
+                    tempTable.table[battleSkeleton.posY][battleSkeleton.posX] = 0;
+                    battleSkeleton.posX = - 50;
+                    battleSkeleton.posY = - 50;
+                }
+                else if (this.currentHp < 0) {
+                    System.out.println("Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "Game Over" + "\n");
+                }
+
             }
         }
         return isAlive = false;
     }
 
-    public void strike(Skeleton tempSkeleton) {
-        if (this.Sv > tempSkeleton.Dp) {
-            tempSkeleton.currentHp = tempSkeleton.currentHp - ((this.Sv) - tempSkeleton.Dp);
-        }
-        else if ((tempSkeleton.Sv) > this.Dp) {
-            this.currentHp = this.currentHp - ((tempSkeleton.Sv) - this.Dp);
-        }
-
-    }
+//    public void strike(Skeleton tempSkeleton) {
+//        if (this.Sv > tempSkeleton.Dp) {
+//            tempSkeleton.currentHp = tempSkeleton.currentHp - ((this.Sv) - tempSkeleton.Dp);
+//        }
+//        else if ((tempSkeleton.Sv) > this.Dp) {
+//            this.currentHp = this.currentHp - ((tempSkeleton.Sv) - this.Dp);
+//        }
+//
+//    }
 }

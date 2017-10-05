@@ -79,7 +79,7 @@ public class Board extends JComponent implements KeyListener {
         Hero hero = new Hero(0, 0);
         board.tempHero = hero;
 
-        Skeleton monsterOne = new Skeleton(4, 1);
+        Skeleton monsterOne = new Skeleton(0, 1);
         board.tempSkeleton1 = monsterOne;
         board.tempTable.tempSkeleton1 = monsterOne;
         board.tempTable.table[board.tempSkeleton1.posY][board.tempSkeleton1.posX] = 2;
