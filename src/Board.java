@@ -21,8 +21,8 @@ public class Board extends JComponent implements KeyListener {
         this.testBoxX = 0;
         this.testBoxY = 0;
         this.width = 720;
-//        this.posX = 0;
-//        this.posY = 0;
+        this.posX = 0;
+        this.posY = 0;
 
 
         // set the size of your draw board
@@ -81,15 +81,19 @@ public class Board extends JComponent implements KeyListener {
 
         Skeleton monsterOne = new Skeleton(4, 1);
         board.tempSkeleton1 = monsterOne;
+        board.tempTable.table[board.tempSkeleton1.posY][board.tempSkeleton1.posX] = 2;
 
         Skeleton monsterTwo = new Skeleton(2, 5);
         board.tempSkeleton2 = monsterTwo;
+        board.tempTable.table[board.tempSkeleton2.posY][board.tempSkeleton2.posX] = 3;
 
         Skeleton monsterThree = new Skeleton(0, 8);
         board.tempSkeleton3 = monsterThree;
+        board.tempTable.table[board.tempSkeleton3.posY][board.tempSkeleton3.posX] = 4;
 
         Boss boss = new Boss(7, 6);
         board.tempBoss = boss;
+        board.tempTable.table[board.tempBoss.posY][board.tempBoss.posX] = 5;
 
 
 
