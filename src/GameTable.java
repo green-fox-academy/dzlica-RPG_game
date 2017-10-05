@@ -3,6 +3,9 @@ import java.awt.*;
 public class GameTable {
     int[][] table;
     int width;
+    Skeleton tempSkeleton1;
+    Skeleton tempSkeleton2;
+    Skeleton tempSkeleton3;
 
     public GameTable(int[][]table, int width) {
         this.width = width;

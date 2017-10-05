@@ -81,14 +81,17 @@ public class Board extends JComponent implements KeyListener {
 
         Skeleton monsterOne = new Skeleton(4, 1);
         board.tempSkeleton1 = monsterOne;
+        board.tempTable.tempSkeleton1 = monsterOne;
         board.tempTable.table[board.tempSkeleton1.posY][board.tempSkeleton1.posX] = 2;
 
         Skeleton monsterTwo = new Skeleton(2, 5);
         board.tempSkeleton2 = monsterTwo;
+        board.tempTable.tempSkeleton2 = monsterTwo; //gametable-be teszem a szörnyet, így onnan továbbhívom a heróba
         board.tempTable.table[board.tempSkeleton2.posY][board.tempSkeleton2.posX] = 3;
 
         Skeleton monsterThree = new Skeleton(0, 8);
         board.tempSkeleton3 = monsterThree;
+        board.tempTable.tempSkeleton3 = monsterThree;
         board.tempTable.table[board.tempSkeleton3.posY][board.tempSkeleton3.posX] = 4;
 
         Boss boss = new Boss(7, 6);

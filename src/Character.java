@@ -25,11 +25,7 @@ public class Character extends PositionedImage {
         return (int) (1 + Math.random() * 6);
     }
 
-    public void die() {
-        if (!this.isAlive) {
-            this.image = null;
-        }
-    }
+
 
 
 }

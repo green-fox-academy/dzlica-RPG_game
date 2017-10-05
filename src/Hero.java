@@ -31,22 +31,26 @@ public class Hero extends Character {
             if (stayIn(testBoxX, testBoxY - 1, tempTable)) {
                 testBoxY -= 1;
             }
+            battle(testBoxX, testBoxY, tempTable);
 
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png");
             if (stayIn(testBoxX, testBoxY + 1, tempTable)) {
                 testBoxY += 1;
             }
+            battle(testBoxX, testBoxY, tempTable);
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-left.png");
             if (stayIn(testBoxX -1, testBoxY, tempTable)) {
                 testBoxX -= 1;
             }
+            battle(testBoxX, testBoxY, tempTable);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-right.png");
             if (stayIn(testBoxX + 1, testBoxY, tempTable)) {
                 testBoxX += 1;
             }
+            battle(testBoxX, testBoxY, tempTable);
         }
         }
 
@@ -62,10 +66,25 @@ public class Hero extends Character {
         else return true;
     }
 
-    public boolean battle(int toBeX, int toBeY, GameTable tempTable, Skeleton tempSkeleton) {
+    public boolean battle(int toBeX, int toBeY, GameTable tempTable) {
+        Skeleton battleSkeleton = new Skeleton(toBeX, toBeY);
         if (tempTable.table[toBeX][toBeY] > 1) {
-            while (this.currentHp > 0 || tempSkeleton.currentHp > 0) {
-                this.strike(tempSkeleton);
+            if (tempTable.table[toBeX][toBeY] == 2) {
+                battleSkeleton = tempTable.tempSkeleton1;
+            }
+            else if (tempTable.table[toBeX][toBeY] == 3) {
+                battleSkeleton = tempTable.tempSkeleton2;
+            }
+            else if (tempTable.table[toBeX][toBeY] == 5) {
+                battleSkeleton = tempTable.tempSkeleton3;
+            }
+            while (this.currentHp > 0 || battleSkeleton.currentHp > 0) {
+                this.strike(battleSkeleton);
+            }
+            if (isAlive == false)  {
+                tempTable.table[battleSkeleton.posY][battleSkeleton.posX] = 0;
+                battleSkeleton.posX = - 50;
+                battleSkeleton.posY = - 50;
             }
         }
         return isAlive = false;
@@ -78,5 +97,6 @@ public class Hero extends Character {
         else if ((tempSkeleton.Sv) > this.Dp) {
             this.currentHp = this.currentHp - ((tempSkeleton.Sv) - this.Dp);
         }
+
     }
 }
