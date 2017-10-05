@@ -7,13 +7,10 @@ public class Character extends PositionedImage {
     int Sp;
     int d6;
     boolean isAlive;
+    int Sv;
 
     public Character(String filename, int posX, int posY, boolean isAlive) {
         super(filename, posX, posY);
-    }
-
-    protected void alive() {
-        isAlive = true;
     }
 
     @Override
@@ -27,4 +24,12 @@ public class Character extends PositionedImage {
     public static int d6() {
         return (int) (1 + Math.random() * 6);
     }
+
+    public void die() {
+        if (!this.isAlive) {
+            this.image = null;
+        }
+    }
+
+
 }

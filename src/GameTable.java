@@ -15,7 +15,7 @@ public class GameTable {
                 if (this.table[i][j] == 1) {
                     PositionedImage wall = new PositionedImage("image/wall.png", j, i);
                     wall.draw(graphics);
-                } else if (this.table[i][j] != 1) {
+                } else if (this.table[i][j] == 0) {
                     PositionedImage background = new PositionedImage("image/floor.png", j, i);
                     background.draw(graphics);
                 }
