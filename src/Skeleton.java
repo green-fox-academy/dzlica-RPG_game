@@ -2,11 +2,10 @@ import java.awt.*;
 
 public class Skeleton extends Character {
     String currentImage;
-    GameTable tempTable;
 
 
     public Skeleton(int posX, int posY) {
-        super("image/skeleton.png", posX, posY);
+        super("image/skeleton.png", posX, posY, true);
         this.currentImage = "image/skeleton.png";
         int x = 1; //level
         this.maxHp = 2 * x * d6();

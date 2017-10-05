@@ -5,7 +5,7 @@ public class Boss extends Character {
     String currentImage;
 
     public Boss(int posX, int posY) {
-        super("image/boss.png", posX, posY);
+        super("image/boss.png", posX, posY, true);
         this.currentImage = "image/boss.png";
         int x = 1; //level
         this.maxHp = 2 * x * d6() + d6();

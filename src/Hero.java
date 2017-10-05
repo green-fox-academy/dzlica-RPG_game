@@ -2,9 +2,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Hero extends Character {
-    String currentImage;
     int testBoxX;
     int testBoxY;
+
 
     @Override
     public void draw(Graphics graphics) {
@@ -14,7 +14,7 @@ public class Hero extends Character {
     }
 
     public Hero(int posX, int posY) {
-        super("image/hero-down.png", posX, posY);
+        super("image/hero-down.png", posX, posY, true);
         this.testBoxX = 0;
         this.testBoxY = 0;
         this.maxHp = 20 + 3 * d6();
@@ -24,12 +24,15 @@ public class Hero extends Character {
     }
 
 
-    public void moving(KeyEvent e, GameTable tempTable) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png");
-            if (stayIn(testBoxX, testBoxY - 1, tempTable)) {
-                testBoxY -= 1;
-            }
+    public void moving(KeyEvent e, GameTable tempTable, Skeleton tempSkeleton) {
+        if (meetMonster(testBoxX, testBoxY, tempTable)) {
+            this.strike(tempSkeleton);
+        } else {
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-up.png");
+                if (stayIn(testBoxX, testBoxY - 1, tempTable)) {
+                    testBoxY -= 1;
+                }
 
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 this.setImage("/Users/lica/GreenFox/dzlica-RPG_game/image/hero-down.png");
@@ -50,8 +53,10 @@ public class Hero extends Character {
 
         }
 
-    public boolean stayIn(int toBeX, int toBeY, GameTable tempTable) {
 
+    }
+
+    public boolean stayIn(int toBeX, int toBeY, GameTable tempTable) {
         if (toBeX < 0 ||  toBeX > 9) {
             return false;
         }
@@ -62,6 +67,23 @@ public class Hero extends Character {
             return false;
         }
         else return true;
+    }
+
+    public boolean meetMonster(int toBeX, int toBeY, GameTable tempTable) {
+        return tempTable.table[toBeX][toBeY] > 1;
+    }
+
+    public boolean strike(Skeleton tempSkeleton) {
+
+        while (this.currentHp > 0 || tempSkeleton.currentHp > 0) {
+            if ((this.Sp + 2 * d6) > tempSkeleton.Dp) {
+                tempSkeleton.currentHp = tempSkeleton.currentHp - ((this.Sp + 2 * d6) - tempSkeleton.Dp);
+            }
+            else if ((tempSkeleton.Sp + 2 * d6) > this.Dp) {
+                this.currentHp = this.currentHp - ((tempSkeleton.Sp + 2 * d6) - this.Dp);
+            }
+        }
+        return isAlive = false;
     }
 
 

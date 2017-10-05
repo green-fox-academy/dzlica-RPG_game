@@ -6,9 +6,14 @@ public class Character extends PositionedImage {
     int Dp;
     int Sp;
     int d6;
+    boolean isAlive;
 
-    public Character(String filename, int posX, int posY) {
+    public Character(String filename, int posX, int posY, boolean isAlive) {
         super(filename, posX, posY);
+    }
+
+    protected void alive() {
+        isAlive = true;
     }
 
     @Override
